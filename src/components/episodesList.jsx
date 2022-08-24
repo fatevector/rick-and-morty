@@ -1,17 +1,12 @@
 import { episodes } from "../fakeStorage/episodes";
+import Episode from "./episode";
 
 const EpisodesList = () => {
     return (
         <div className="container">
             <div className="row">
                 {episodes.map((episode) => (
-                    <div
-                        key={episode.id}
-                        style={{ height: "200px" }}
-                        className="col-3"
-                    >
-                        {episode.name}
-                    </div>
+                    <Episode key={episode.id} {...episode} />
                 ))}
             </div>
         </div>
