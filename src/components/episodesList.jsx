@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { episodes } from "../fakeStorage/episodes";
+import paginate from "../utils/paginate";
 import Episode from "./episode";
 import Pagination from "./pagination";
 
 const EpisodesList = () => {
     const count = episodes.length;
-    const pageSize = 8;
+    const pageSize = 9;
     const [currentPage, setCurrentPage] = useState(1);
+    const episodesSlice = paginate(episodes, currentPage, pageSize);
 
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
@@ -15,7 +17,7 @@ const EpisodesList = () => {
     return (
         <div className="container">
             <div className="row">
-                {episodes.map((episode) => (
+                {episodesSlice.map((episode) => (
                     <Episode key={episode.id} {...episode} />
                 ))}
             </div>
