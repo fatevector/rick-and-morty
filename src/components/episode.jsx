@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 const Episode = ({ name, airDate, episode }) => {
     return (
         <div className="col-4 mb-2">
@@ -11,6 +14,12 @@ const Episode = ({ name, airDate, episode }) => {
             </div>
         </div>
     );
+};
+
+Episode.propTypes = {
+    name: PropTypes.string.isRequired,
+    airDate: PropTypes.string.isRequired,
+    episode: PropTypes.string.isRequired
 };
 
 export default Episode;
