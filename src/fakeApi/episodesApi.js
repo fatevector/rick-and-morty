@@ -134,3 +134,21 @@ export const episodes = [
         created: "2017-11-10T12:56:35.772Z"
     }
 ];
+
+export const fetchAll = year =>
+    new Promise(resolve => {
+        // TODO добавить фильтрацию по году
+        setTimeout(() => {
+            resolve(episodes);
+        }, 2000);
+    });
+
+export const fetchYears = () =>
+    new Promise((resolve, reject) => {
+        const years = episodes.map(({ airDate }) => airDate.slice(-4));
+        const uniqYears = [...new Set(years)];
+
+        setTimeout(() => {
+            resolve(uniqYears);
+        }, 2000);
+    });
