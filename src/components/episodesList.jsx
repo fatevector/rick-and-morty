@@ -16,11 +16,11 @@ const EpisodesList = () => {
 
     const getEpisodes = year => {
         fetchAll(year).then(response => setEpisodes(response));
-        setCurrentPage(1);
     };
 
     useEffect(() => {
         getEpisodes(filter);
+        setCurrentPage(1);
     }, [filter]);
 
     useEffect(() => {
@@ -35,15 +35,33 @@ const EpisodesList = () => {
         setFilter(filter);
     };
 
+    const handleReset = () => {
+        setFilter();
+        setCurrentPage(1);
+    };
+
     return (
         <div className="container pt-2">
             <div className="row">
                 <div className="col-4">
-                    <GroupList
-                        items={years}
-                        filter={filter}
-                        onChangeFilter={handleFilterChange}
-                    />
+                    {!!years.length && (
+                        <>
+                            <GroupList
+                                items={years}
+                                filter={filter}
+                                onChangeFilter={handleFilterChange}
+                            />
+                            <hr />
+                            <div className="d-grid">
+                                <button
+                                    onClick={handleReset}
+                                    className="btn btn-m btn-primary"
+                                >
+                                    Очистить
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="col-8">
                     <div className="row">
