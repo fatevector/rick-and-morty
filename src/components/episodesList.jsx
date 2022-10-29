@@ -1,25 +1,49 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
+import { fetchAll, fetchYears } from "../fakeApi/episodesApi";
 import paginate from "../utils/paginate";
 import Episode from "./episode";
 import GroupList from "./groupList";
 import Pagination from "./pagination";
 
 const EpisodesList = () => {
-    const [episodes] = useState([]);
+    const [episodes, setEpisodes] = useState([]);
+    const [years, setYears] = useState([]);
+    const [filter, setFilter] = useState();
     const count = episodes.length;
     const pageSize = 9;
     const [currentPage, setCurrentPage] = useState(1);
     const episodesSlice = paginate(episodes, currentPage, pageSize);
 
+    const getEpisodes = year => {
+        fetchAll(year).then(response => setEpisodes(response));
+        setCurrentPage(1);
+    };
+
+    useEffect(() => {
+        getEpisodes(filter);
+    }, [filter]);
+
+    useEffect(() => {
+        fetchYears().then(response => setYears(response));
+    }, []);
+
     const handlePageChange = pageIndex => {
         setCurrentPage(pageIndex);
+    };
+
+    const handleFilterChange = filter => {
+        setFilter(filter);
     };
 
     return (
         <div className="container pt-2">
             <div className="row">
                 <div className="col-4">
-                    <GroupList />
+                    <GroupList
+                        items={years}
+                        filter={filter}
+                        onChangeFilter={handleFilterChange}
+                    />
                 </div>
                 <div className="col-8">
                     <div className="row">
