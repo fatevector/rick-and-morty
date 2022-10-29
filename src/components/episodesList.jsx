@@ -43,8 +43,6 @@ const EpisodesList = () => {
                         items={years}
                         filter={filter}
                         onChangeFilter={handleFilterChange}
-                        valueProperty="id"
-                        contentProperty="text"
                     />
                 </div>
                 <div className="col-8">

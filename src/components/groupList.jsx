@@ -25,12 +25,16 @@ const GroupList = ({
     );
 };
 
+GroupList.defaultProps = {
+    valueProperty: "id",
+    contentProperty: "text"
+};
 GroupList.propTypes = {
     items: PropTypes.array.isRequired,
     filter: PropTypes.string,
     onChangeFilter: PropTypes.func.isRequired,
-    valueProperty: PropTypes.string.isRequired,
-    contentProperty: PropTypes.string.isRequired
+    valueProperty: PropTypes.string,
+    contentProperty: PropTypes.string
 };
 
 export default GroupList;
