@@ -17,6 +17,7 @@ const GroupList = ({
                         (item[valueProperty] === filter ? " active" : "")
                     }
                     key={item[valueProperty]}
+                    onClick={() => onChangeFilter(item[valueProperty])}
                 >
                     {item[contentProperty]}
                 </button>
