@@ -137,10 +137,12 @@ export const episodes = [
 
 export const fetchAll = year =>
     new Promise(resolve => {
-        // TODO добавить фильтрацию по году
+        const filteredEpisodes = year
+            ? episodes.filter(({ airDate }) => airDate.slice(-4) === year)
+            : episodes;
         setTimeout(() => {
-            resolve(episodes);
-        }, 2000);
+            resolve(filteredEpisodes);
+        }, 500);
     });
 
 export const fetchYears = () =>
