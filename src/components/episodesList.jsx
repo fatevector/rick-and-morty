@@ -10,7 +10,7 @@ const EpisodesList = () => {
     const [years, setYears] = useState([]);
     const [filter, setFilter] = useState();
     const count = episodes.length;
-    const pageSize = 9;
+    const pageSize = 6;
     const [currentPage, setCurrentPage] = useState(1);
     const episodesSlice = paginate(episodes, currentPage, pageSize);
 
@@ -43,6 +43,8 @@ const EpisodesList = () => {
                         items={years}
                         filter={filter}
                         onChangeFilter={handleFilterChange}
+                        valueProperty="id"
+                        contentProperty="text"
                     />
                 </div>
                 <div className="col-8">

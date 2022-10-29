@@ -144,11 +144,22 @@ export const fetchAll = year =>
     });
 
 export const fetchYears = () =>
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
         const years = episodes.map(({ airDate }) => airDate.slice(-4));
         const uniqYears = [...new Set(years)];
 
+        const seasonsByYear = {
+            2013: "S01",
+            2014: "S02",
+            2015: "S03"
+        };
+
+        const filters = uniqYears.map(year => ({
+            id: year,
+            text: `${year} (${seasonsByYear[year]})`
+        }));
+
         setTimeout(() => {
-            resolve(uniqYears);
+            resolve(filters);
         }, 2000);
     });
