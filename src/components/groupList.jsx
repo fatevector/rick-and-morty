@@ -10,16 +10,16 @@ const GroupList = ({
 }) => {
     return (
         <div className="list-group">
-            {items.map(item => (
+            {Object.keys(items).map(item => (
                 <button
                     className={
                         "list-group-item list-group-item-action" +
-                        (item[valueProperty] === filter ? " active" : "")
+                        (items[item][valueProperty] === filter ? " active" : "")
                     }
-                    key={item[contentProperty]}
-                    onClick={() => onChangeFilter(item[valueProperty])}
+                    key={items[item][contentProperty]}
+                    onClick={() => onChangeFilter(items[item][valueProperty])}
                 >
-                    {item[contentProperty]}
+                    {items[item][contentProperty]}
                 </button>
             ))}
         </div>
@@ -31,7 +31,7 @@ GroupList.defaultProps = {
     contentProperty: "text"
 };
 GroupList.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     filter: PropTypes.string,
     onChangeFilter: PropTypes.func.isRequired,
     valueProperty: PropTypes.string,

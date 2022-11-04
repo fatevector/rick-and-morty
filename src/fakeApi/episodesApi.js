@@ -163,5 +163,5 @@ export const fetchYears = () =>
 
         setTimeout(() => {
             resolve(filters);
-        }, 2000);
+        }, 500);
     });
